@@ -1,4 +1,5 @@
 <?php
+
 if (!function_exists('request')) {
     function request($key = null)
     {
@@ -26,7 +27,9 @@ if (!function_exists('view')) {
     {
         $name = str_replace('.', '/', $name) . '.php';
 
-        return file_get_contents(__DIR__ . '/views/' . $name);
+        $view = include __DIR__ . '/views/' . $name;
+
+        return $view;
     }
 }
 
@@ -35,6 +38,22 @@ if (!function_exists('config')) {
     {
         $name = explode('.', $name);
         $config = include __DIR__ . '/config/' . $name[0] . '.php';
+
+        return $config[$name[1]];
+    }
+}
+
+if (!function_exists('trans')) {
+    function trans($name)
+    {
+        $name = explode('.', $name);
+        $path = __DIR__ . '/languages/' . config('app.locale') . '/' . $name[0] . '.php';
+        $fallback_path = __DIR__ . '/languages/' . config('app.fallback_locale') . '/' . $name[0] . '.php';
+
+        if (file_exists($path))
+            $config = include $path;
+        else
+            $config = include $fallback_path;
 
         return $config[$name[1]];
     }
