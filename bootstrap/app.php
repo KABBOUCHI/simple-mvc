@@ -44,7 +44,7 @@ switch ($routeInfo[0]) {
 
             $class = "App\\Controllers\\{$class}";
 
-           echo (new $class)->{$method}(... $vars);
+            echo (new $class)->{$method}(... $vars);
         }
 
         break;

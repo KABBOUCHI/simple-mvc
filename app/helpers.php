@@ -30,12 +30,12 @@ if (!function_exists('view')) {
     }
 }
 
-
 if (!function_exists('config')) {
     function config($name)
     {
         $name = explode('.', $name);
-        $config = include  __DIR__ . '/config/' . $name[0] . '.php';
+        $config = include __DIR__ . '/config/' . $name[0] . '.php';
+
         return $config[$name[1]];
     }
 }

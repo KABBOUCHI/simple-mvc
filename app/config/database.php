@@ -6,5 +6,5 @@ return [
     'database' => 'simple-mvc',
     'username' => 'root',
     'password' => 'root',
-    'charset' => 'utf8mb4'
+    'charset'  => 'utf8mb4'
 ];
