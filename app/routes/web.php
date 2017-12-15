@@ -3,7 +3,7 @@
 use App\Models\User;
 
 $route->get('/', function () {
-    return '<h1> Hi! </h1>';
+    return view('welcome');
 });
 
 $route->get('/home', 'HomeController@index');

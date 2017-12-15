@@ -29,3 +29,13 @@ if (!function_exists('view')) {
         return file_get_contents(__DIR__ . '/views/' . $name);
     }
 }
+
+
+if (!function_exists('config')) {
+    function config($name)
+    {
+        $name = explode('.', $name);
+        $config = include  __DIR__ . '/config/' . $name[0] . '.php';
+        return $config[$name[1]];
+    }
+}
