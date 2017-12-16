@@ -1,10 +1,10 @@
 <?php namespace SimpleMVC;
 
 
-use App\Contracts\Middleware;
 use Closure;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
+use SimpleMVC\Contracts\Middleware;
 use function FastRoute\simpleDispatcher;
 
 class Bootstrap
@@ -53,7 +53,7 @@ class Bootstrap
                 $vars = $routeInfo[2];
                 $vars = (collect($vars)->flatten()->all());
                 if ($handler instanceof Closure) {
-                    echo $handler(... $vars);
+                    $handler(... $vars);
                 } else {
                     $handler = explode("@", $handler);
 
@@ -74,12 +74,12 @@ class Bootstrap
     {
         $this->dependencyInjector->register('config', function () {
 
-            $files = collect(array_diff(scandir(__DIR__ . '/../app/config/'), array('..', '.')));
+            $files = collect(array_diff(scandir(__DIR__ . '/../config/'), array('..', '.')));
 
             $config = new Config();
 
             $files->each(function ($file) use (&$config) {
-                $config->set(explode('.', $file)[0], include __DIR__ . '/../app/config/' . $file);
+                $config->set(explode('.', $file)[0], include __DIR__ . '/../config/' . $file);
             });
 
             return $config;

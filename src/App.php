@@ -21,7 +21,5 @@ class App
         date_default_timezone_set(config('app.timezone'));
         $this->bootstrap->middleware();
         $this->bootstrap->routes();
-
-
     }
 }

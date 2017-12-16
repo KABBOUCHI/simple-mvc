@@ -31,7 +31,7 @@ if (!function_exists('view')) {
 
         extract($data);
 
-        $compiled_view = include __DIR__ . '/../app/views/' . $view_name;
+        $compiled_view = include views_path() . '/' . $view_name;
 
         return $compiled_view;
     }
@@ -67,8 +67,8 @@ if (!function_exists('trans')) {
     function trans($name)
     {
         $name = explode('.', $name);
-        $path = __DIR__ . '/../app/languages/' . config('app.locale') . '/' . $name[0] . '.php';
-        $fallback_path = __DIR__ . '/../app/languages/' . config('app.fallback_locale') . '/' . $name[0] . '.php';
+        $path = __DIR__ . '/../languages/' . config('app.locale') . '/' . $name[0] . '.php';
+        $fallback_path = __DIR__ . '/../languages/' . config('app.fallback_locale') . '/' . $name[0] . '.php';
 
         if (file_exists($path))
             $config = include $path;
@@ -78,3 +78,17 @@ if (!function_exists('trans')) {
         return $config[$name[1]];
     }
 }
+if (!function_exists('root_path')) {
+    function root_path($path)
+    {
+        return ROOT_PATH . '/' . ltrim($path);
+    }
+}
+
+if (!function_exists('views_path')) {
+    function views_path()
+    {
+        return config('view.path');
+    }
+}
+
