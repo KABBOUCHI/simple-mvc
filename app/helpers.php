@@ -23,13 +23,15 @@ if (!function_exists('request')) {
 }
 
 if (!function_exists('view')) {
-    function view($name)
+    function view($view_name, $data = [])
     {
-        $name = str_replace('.', '/', $name) . '.php';
+        $view_name = str_replace('.', '/', $view_name) . '.php';
 
-        $view = include __DIR__ . '/views/' . $name;
+        extract($data);
 
-        return $view;
+        $compiled_view = include __DIR__ . '/views/' . $view_name;
+
+        return $compiled_view;
     }
 }
 

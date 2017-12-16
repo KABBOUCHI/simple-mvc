@@ -3,7 +3,9 @@
 use App\Models\User;
 
 $route->get('/', function () {
-    return view('welcome');
+    return view('welcome',[
+        'message' => "Simple MVC"
+    ]);
 });
 
 $route->get('/home', 'HomeController@index');

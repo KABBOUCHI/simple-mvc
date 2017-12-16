@@ -17,7 +17,7 @@
         <div class="flex flex-col justify-around h-full">
             <div>
                 <h1 class="text-grey-darker text-center font-hairline tracking-wide text-7xl mb-6">
-                    Simple MVC
+                    <?= $message ?>
                 </h1>
                 <h3 class="text-grey-darker text-center font-medium tracking-wide text-xl mb-6">
                     <?= trans('messages.hello') ?>
