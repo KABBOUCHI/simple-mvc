@@ -1,3 +1,7 @@
-<?php require __DIR__ . '/bootstrap/app.php';
+<?php require_once __DIR__ . '/vendor/autoload.php';
 
-date_default_timezone_set(config('app.timezone'));
+use SimpleMVC\App;
+
+$app = new App();
+
+$app->run();
