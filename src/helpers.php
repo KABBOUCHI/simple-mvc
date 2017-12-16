@@ -109,3 +109,11 @@ if (!function_exists('session')) {
     }
 }
 
+if (!function_exists('redirect')) {
+
+    function redirect($url)
+    {
+        header('Location: ' . $url);
+    }
+}
+
