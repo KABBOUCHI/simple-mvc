@@ -5,6 +5,7 @@ use Closure;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use SimpleMVC\Contracts\Middleware;
+use Symfony\Component\HttpFoundation\Session\Session;
 use function FastRoute\simpleDispatcher;
 
 class Bootstrap
@@ -62,7 +63,7 @@ class Bootstrap
 
                     $class = "App\\Controllers\\{$class}";
 
-                    echo (new $class)->{$method}(... $vars);
+                    (new $class)->{$method}(... $vars);
                 }
 
                 break;
@@ -92,6 +93,13 @@ class Bootstrap
             /** @var Middleware $middleware */
             $middleware = new $middleware;
             $middleware->handle();
+        });
+    }
+
+    public function session()
+    {
+        $this->dependencyInjector->register('session', function () {
+            return new Session();
         });
     }
 }

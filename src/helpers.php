@@ -48,6 +48,12 @@ if (!function_exists('app')) {
 }
 
 if (!function_exists('config')) {
+
+
+    /**
+     * @param string $name
+     * @return \SimpleMVC\Config $config
+     */
     function config($name = null)
     {
         /** @var \SimpleMVC\Config $config */
@@ -89,6 +95,17 @@ if (!function_exists('views_path')) {
     function views_path()
     {
         return config('view.path');
+    }
+}
+
+if (!function_exists('session')) {
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Session\Session
+     */
+    function session()
+    {
+        return app('session');
     }
 }
 

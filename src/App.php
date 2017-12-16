@@ -18,6 +18,7 @@ class App
     public function run()
     {
         $this->bootstrap->config();
+        $this->bootstrap->session();
         date_default_timezone_set(config('app.timezone'));
         $this->bootstrap->middleware();
         $this->bootstrap->routes();
