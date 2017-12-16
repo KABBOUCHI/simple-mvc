@@ -3,5 +3,5 @@ A Simple PHP Framework
 
 ## Usage
 ```
-composer create-project kabbouchi/simple-mvc
+composer create-project kabbouchi/simple-mvc <project-name> dev-master
 ```
