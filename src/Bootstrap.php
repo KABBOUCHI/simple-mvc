@@ -41,13 +41,13 @@ class Bootstrap
 
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
-                // ... 404 Not Found
-                echo "404";
+                http_response_code(404);
+                echo view('errors.404');
                 break;
             case Dispatcher::METHOD_NOT_ALLOWED:
                 $allowedMethods = $routeInfo[1];
-                // ... 405 Method Not Allowed
-                echo "405";
+                http_response_code(405);
+                echo view('errors.404');
                 break;
             case Dispatcher::FOUND:
                 $handler = $routeInfo[1];

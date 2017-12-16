@@ -52,7 +52,7 @@ if (!function_exists('config')) {
 
     /**
      * @param string $name
-     * @return \SimpleMVC\Config $config
+     * @return string|\SimpleMVC\Config $config
      */
     function config($name = null)
     {
