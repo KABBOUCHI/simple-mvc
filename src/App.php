@@ -1,8 +1,9 @@
-<?php namespace SimpleMVC;
+<?php
+
+namespace SimpleMVC;
 
 class App
 {
-
     /** @var Bootstrap bootstrap */
     protected $bootstrap;
 

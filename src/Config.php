@@ -4,7 +4,6 @@ namespace SimpleMVC;
 
 class Config
 {
-
     protected $items = [];
 
     public function __construct(array $items = [])
@@ -26,7 +25,6 @@ class Config
             }
         }
         app()->register('config', $this);
-
     }
 
     public function get($key, $default = null)
@@ -39,5 +37,4 @@ class Config
 
         return $this->items[$keys[0]][$keys[1]];
     }
-
 }

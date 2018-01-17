@@ -1,12 +1,13 @@
-<?php namespace SimpleMVC;
+<?php
 
+namespace SimpleMVC;
 
 use Closure;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use SimpleMVC\Contracts\Middleware;
-use Symfony\Component\HttpFoundation\Session\Session;
 use function FastRoute\simpleDispatcher;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class Bootstrap
 {
@@ -21,7 +22,7 @@ class Bootstrap
     public function routes()
     {
         $dispatcher = simpleDispatcher(function (RouteCollector $route) {
-            require __DIR__ . '/../app/routes/web.php';
+            require __DIR__.'/../app/routes/web.php';
         });
 
         $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -33,11 +34,11 @@ class Bootstrap
 
         $uri = rawurldecode($uri);
 
-        if ($uri != '/')
+        if ($uri != '/') {
             $uri = rtrim(rawurldecode($uri), '/');
+        }
 
         $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-
 
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
@@ -54,16 +55,16 @@ class Bootstrap
                 $vars = $routeInfo[2];
                 $vars = (collect($vars)->flatten()->all());
                 if ($handler instanceof Closure) {
-                    $handler(... $vars);
+                    $handler(...$vars);
                 } else {
-                    $handler = explode("@", $handler);
+                    $handler = explode('@', $handler);
 
                     $class = $handler[0];
                     $method = $handler[1];
 
                     $class = "App\\Controllers\\{$class}";
 
-                    (new $class)->{$method}(... $vars);
+                    (new $class)->{$method}(...$vars);
                 }
 
                 break;
@@ -74,13 +75,12 @@ class Bootstrap
     public function config()
     {
         $this->dependencyInjector->register('config', function () {
-
-            $files = collect(array_diff(scandir(__DIR__ . '/../config/'), array('..', '.')));
+            $files = collect(array_diff(scandir(__DIR__.'/../config/'), ['..', '.']));
 
             $config = new Config();
 
             $files->each(function ($file) use (&$config) {
-                $config->set(explode('.', $file)[0], include __DIR__ . '/../config/' . $file);
+                $config->set(explode('.', $file)[0], include __DIR__.'/../config/'.$file);
             });
 
             return $config;

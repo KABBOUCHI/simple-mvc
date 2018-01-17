@@ -1,10 +1,11 @@
-<?php /** @var FastRoute\RouteCollector $route */
+<?php
 
+/** @var FastRoute\RouteCollector $route */
 use App\Models\User;
 
 $route->get('/', function () {
-    return view('welcome',[
-        'message' => "Simple MVC"
+    return view('welcome', [
+        'message' => 'Simple MVC'
     ]);
 });
 

@@ -1,4 +1,6 @@
-<?php  namespace SimpleMVC\Contracts;
+<?php
+
+namespace SimpleMVC\Contracts;
 
 interface Middleware
 {

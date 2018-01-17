@@ -1,4 +1,6 @@
-<?php namespace App\Models;
+<?php
+
+namespace App\Models;
 
 use PDO;
 use PDOException;
@@ -13,7 +15,6 @@ class Database
     private $password;
     private $port;
 
-
     public function __construct()
     {
         $this->hostname = config('database.host');
@@ -24,7 +25,7 @@ class Database
         $this->port = config('database.port');
 
         try {
-            $this->link = new PDO('mysql:host=' . $this->hostname . ';port=' . $this->port . ';dbname=' . $this->database . ';charset=' . $this->charset, $this->username, $this->password);
+            $this->link = new PDO('mysql:host='.$this->hostname.';port='.$this->port.';dbname='.$this->database.';charset='.$this->charset, $this->username, $this->password);
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -46,6 +47,4 @@ class Database
 
         return $stmt->fetchObject(get_class($model));
     }
-
 }
-

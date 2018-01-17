@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Contracts\Support\Arrayable;
 
 class Model implements Arrayable
@@ -18,7 +17,6 @@ class Model implements Arrayable
     {
         $this->database = new Database();
     }
-
 
     public static function all()
     {

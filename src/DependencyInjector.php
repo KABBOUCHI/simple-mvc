@@ -1,4 +1,6 @@
-<?php namespace SimpleMVC;
+<?php
+
+namespace SimpleMVC;
 
 use Exception;
 
@@ -47,10 +49,10 @@ class DependencyInjector
     public function getService($service_name, $args = [])
     {
         // Check if the service exists
-        if (!array_key_exists($service_name, $this->services)) {
+        if (! array_key_exists($service_name, $this->services)) {
             throw new Exception("The Service: $service_name does not exist.");
         }
-        if (!empty($args)) {
+        if (! empty($args)) {
             return $this->services[$service_name]($args);
         }
 
